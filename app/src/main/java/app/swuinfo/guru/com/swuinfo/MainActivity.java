@@ -54,6 +54,8 @@ public class MainActivity extends CommonActivity  {
                     tabSite.setImageResource(R.drawable.tab_icon_site);
                     tabShuttle.setImageResource(R.drawable.tab_icon_shuttle);
                     tabNotice.setImageResource(R.drawable.tab_icon_notice);
+
+                    startActivity(new Intent(MainActivity.this, CallActivity.class));
                     break;
                 case R.id.tabSite:
                     tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
