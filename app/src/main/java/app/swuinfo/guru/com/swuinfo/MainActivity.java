@@ -69,6 +69,8 @@ public class MainActivity extends CommonActivity  {
                     tabShuttle.setImageResource(R.drawable.tab_icon_shuttle_click);
                     tabNotice.setImageResource(R.drawable.tab_icon_notice);
                     break;
+                default:
+                    break;
             }
         }
     };
