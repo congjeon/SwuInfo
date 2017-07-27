@@ -112,6 +112,8 @@ public class MenuActivity extends CommonActivity {
                 transaction.replace(R.id.fragment_container, fragmentShuttle);
                 transaction.commit();
                 break;
+            default:
+                break;
         }
     }
 }
