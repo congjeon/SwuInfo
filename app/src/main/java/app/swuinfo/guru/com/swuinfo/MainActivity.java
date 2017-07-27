@@ -3,8 +3,10 @@ package app.swuinfo.guru.com.swuinfo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class MainActivity extends CommonActivity  {
+    Button btnNotice, btnSchedule, btnCall, btnSite, btnShuttle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
