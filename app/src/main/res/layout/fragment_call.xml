@@ -18,7 +18,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtFilter"
+                android:id="@+id/fragTxtFilter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
@@ -28,10 +28,10 @@
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/edtFilter"
+                android:id="@+id/fragEdtFilter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/txtFilter"
+                android:layout_toRightOf="@id/fragTxtFilter"
                 android:layout_weight="3" />
 
 
@@ -44,21 +44,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn1"
+                android:id="@+id/fragBtn1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Button" />
 
             <Button
-                android:id="@+id/btn2"
+                android:id="@+id/fragBtn2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Button" />
 
             <Button
-                android:id="@+id/btn3"
+                android:id="@+id/fragBtn3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -72,10 +72,10 @@
             android:orientation="vertical">
 
             <ListView
-                android:id="@+id/listView"
+                android:id="@+id/fragListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/edtFilter"
+                android:layout_below="@id/fragEdtFilter"
                 android:textFilterEnabled="true" />
 
         </LinearLayout>

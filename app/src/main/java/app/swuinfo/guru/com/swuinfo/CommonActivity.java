@@ -18,7 +18,7 @@ import android.widget.ImageView;
 
 public class CommonActivity extends AppCompatActivity{
     ImageView iconNoti;
-    int on = 1, off = 0;
+    int onOff = 0; //notice가 off면 1, on이면 0
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class CommonActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
 
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(false);            //액션바 아이콘을 업 네비게이션 형태로 표시합니다.
@@ -41,13 +41,19 @@ public class CommonActivity extends AppCompatActivity{
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View actionbar = inflater.inflate(R.layout.custom_titlebar, null);
 
-        actionBar.setCustomView(actionbar);
-        actionbar.findViewById(R.id.iconNoti).setOnClickListener(new View.OnClickListener() {
+        iconNoti = (ImageView) actionbar.findViewById(R.id.iconNoti);
+        iconNoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(onOff != 1) {
+                    iconNoti.setImageResource(R.drawable.noti_on);
+                } else {
+                    iconNoti.setImageResource(R.drawable.noti_off);
+                }
             }
         });
+
+        actionBar.setCustomView(actionbar);
 
         Toolbar parent = (Toolbar)actionbar.getParent();
         parent.setContentInsetsAbsolute(0,0);

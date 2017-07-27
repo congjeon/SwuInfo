@@ -37,12 +37,15 @@ public class CallFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        editText = (EditText)container.findViewById(R.id.edtFilter);
-        btn1 = (Button) container.findViewById(R.id.btn1);
-        btn2 = (Button) container.findViewById(R.id.btn2);
-        btn3 = (Button) container.findViewById(R.id.btn3);
+        //현재 view에서 find view by id하기 위한 뷰 지정
+        View view = inflater.inflate(R.layout.fragment_call, container, false);
 
-        listView = (ListView) container.findViewById(R.id.listView);
+        editText = (EditText) view.findViewById(R.id.fragEdtFilter);
+        btn1 = (Button) view.findViewById(R.id.fragBtn1);
+        btn2 = (Button) view.findViewById(R.id.fragBtn2);
+        btn3 = (Button) view.findViewById(R.id.fragBtn3);
+
+        listView = (ListView) view.findViewById(R.id.fragListView);
 
         //adapter = new CallListAdapter(this);
         //listView.setAdapter(adapter);
@@ -108,7 +111,7 @@ public class CallFragment extends Fragment {
         });
 
 
-        return inflater.inflate(R.layout.fragment_call, container, false);
+        return view;
     }
 
 }
