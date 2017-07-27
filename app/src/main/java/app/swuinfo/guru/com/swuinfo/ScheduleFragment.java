@@ -46,7 +46,7 @@ public class ScheduleFragment extends Fragment {
         //
         mScheDuleAdapter = new ScheDuleAdapter(getActivity());
 
-        mScheDuleAdapter.addAdapter(new ScheDuleItem("",""));
+        mScheDuleAdapter.addAdapter(new ScheDuleItem("날짜","일정"));
 
 
         mMonthView.setAdapter(mMonthAdapter);
