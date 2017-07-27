@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 public class MainActivity extends CommonActivity  {
-    Button btnNotice, btnSchedule, btnCall, btnSite, btnShuttle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
