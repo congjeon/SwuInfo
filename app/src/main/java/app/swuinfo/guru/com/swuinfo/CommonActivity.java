@@ -1,20 +1,23 @@
 package app.swuinfo.guru.com.swuinfo;
 
 import android.Manifest;
+import android.media.Image;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 
 /**
  * Created by xnote on 2017-07-27.
  */
 
 public class CommonActivity extends AppCompatActivity{
+    ImageView iconNoti;
+    int on = 1, off = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,12 @@ public class CommonActivity extends AppCompatActivity{
         View actionbar = inflater.inflate(R.layout.custom_titlebar, null);
 
         actionBar.setCustomView(actionbar);
+        actionbar.findViewById(R.id.iconNoti).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         Toolbar parent = (Toolbar)actionbar.getParent();
         parent.setContentInsetsAbsolute(0,0);

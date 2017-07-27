@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="3dp"
         android:layout_marginLeft="16dp"
         android:src="@drawable/swu_info_title" />
 
