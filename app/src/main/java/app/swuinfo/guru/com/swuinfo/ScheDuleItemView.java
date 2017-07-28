@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * Created by samsung on 2017-07-27.
+ * Created by seonmi on 2017-07-27.
  */
 
 public class ScheDuleItemView extends LinearLayout {

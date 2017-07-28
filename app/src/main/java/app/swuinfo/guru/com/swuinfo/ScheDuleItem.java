@@ -1,7 +1,7 @@
 package app.swuinfo.guru.com.swuinfo;
 
 /**
- * Created by samsung on 2017-07-27.
+ * Created by seonmi on 2017-07-27.
  */
 
 public class ScheDuleItem {
