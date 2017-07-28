@@ -29,7 +29,7 @@ public class NotiFragment1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_noti_fragment1, container, false);
         noticeList = (ListView)view.findViewById(R.id.noticeList);
 
-        new NoticeTask(getActivity(), noticeList).execute("http://203.246.40.125/swu/bbs/notice12.php");
+        new NoticeTask(getActivity(), noticeList).execute("http://203.246.40.125/swu/bbs/notice11.php");
 
         return  view;
     }
