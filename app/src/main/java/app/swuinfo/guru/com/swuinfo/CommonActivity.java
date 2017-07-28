@@ -26,7 +26,6 @@ public class CommonActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 0);
-
     }
 
     @Override

@@ -12,10 +12,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabBar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            android:elevation="6dp"/>
+
+        <LinearLayout
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:background="@color/colorSearchBar"
             android:orientation="horizontal">
 
@@ -27,7 +35,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="검색"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/edtSearchKeyword"
@@ -42,7 +50,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:text="Name"
+                android:hint="검색어를 입력하세요"
+                android:textColorHint="@color/colorIconText"
                 android:textSize="15sp" />
 
             <ImageView
@@ -51,22 +60,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/search_icon" />
+                android:src="@drawable/search_icon" />
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:elevation="9dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_below="@id/searchBar"/>
 
-            <ListView
-                android:id="@+id/noticeList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="#ffffff"
-                android:dividerHeight="0px"/>
-        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

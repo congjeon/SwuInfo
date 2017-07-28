@@ -28,6 +28,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="이것은 공지사항입니다 공지공지공지공지입니다"
+            android:textColor="#202020"
             android:textSize="15sp" />
 
         <ImageView

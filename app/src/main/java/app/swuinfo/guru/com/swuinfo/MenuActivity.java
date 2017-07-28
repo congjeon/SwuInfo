@@ -1,8 +1,11 @@
 package app.swuinfo.guru.com.swuinfo;
 
 import android.content.Intent;
+import android.media.tv.TvContract;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -78,9 +81,11 @@ public class MenuActivity extends CommonActivity {
     //프래그먼트 호출 함수
     private void callFragment(int FragmentNo) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        final ActionBar actionBar = getSupportActionBar();
 
         switch (FragmentNo) {
             case FRAGMENT_NOTICE:
+                actionBar.setElevation(0);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
                 tabCall.setImageResource(R.drawable.tab_icon_call);
                 tabSite.setImageResource(R.drawable.tab_icon_site);
@@ -91,6 +96,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_SCHEDULE:
+                actionBar.setElevation(12);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule_click);
                 tabCall.setImageResource(R.drawable.tab_icon_call);
                 tabSite.setImageResource(R.drawable.tab_icon_site);
@@ -101,6 +107,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_SITE:
+                actionBar.setElevation(12);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
                 tabCall.setImageResource(R.drawable.tab_icon_call);
                 tabSite.setImageResource(R.drawable.tab_icon_site_click);
@@ -111,6 +118,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_CALL:
+                actionBar.setElevation(12);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
                 tabCall.setImageResource(R.drawable.tab_icon_call_click);
                 tabSite.setImageResource(R.drawable.tab_icon_site);
@@ -121,6 +129,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_SHUTTLE:
+                actionBar.setElevation(12);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
                 tabCall.setImageResource(R.drawable.tab_icon_call);
                 tabSite.setImageResource(R.drawable.tab_icon_site);
