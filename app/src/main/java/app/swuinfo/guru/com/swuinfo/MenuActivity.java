@@ -51,6 +51,7 @@ public class MenuActivity extends CommonActivity {
         tabShuttle.setOnClickListener(tabClick);
     }
 
+    //클릭 이벤트
     private View.OnClickListener tabClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -74,6 +75,7 @@ public class MenuActivity extends CommonActivity {
         }
     };
 
+    //프래그먼트 호출 함수
     private void callFragment(int FragmentNo) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
