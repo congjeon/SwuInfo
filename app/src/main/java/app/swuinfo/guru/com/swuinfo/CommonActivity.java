@@ -17,9 +17,6 @@ import android.widget.ImageView;
  */
 
 public class CommonActivity extends AppCompatActivity{
-    ImageView iconNoti;
-    int onOff = 0; //notice가 off면 1, on이면 0
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,18 +36,6 @@ public class CommonActivity extends AppCompatActivity{
 
         LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
         View actionbar = inflater.inflate(R.layout.custom_titlebar, null);
-
-        iconNoti = (ImageView) actionbar.findViewById(R.id.iconNoti);
-        iconNoti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(onOff != 1) {
-                    iconNoti.setImageResource(R.drawable.noti_on);
-                } else {
-                    iconNoti.setImageResource(R.drawable.noti_off);
-                }
-            }
-        });
 
         actionBar.setCustomView(actionbar);
 

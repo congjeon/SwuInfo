@@ -15,15 +15,4 @@
         android:layout_marginTop="3dp"
         android:layout_marginLeft="16dp"
         android:src="@drawable/swu_info_title" />
-
-    <ImageView
-        android:id="@+id/iconNoti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="16dp"
-        android:foregroundGravity="right"
-        app:srcCompat="@drawable/noti_on" />
-
 </RelativeLayout>
