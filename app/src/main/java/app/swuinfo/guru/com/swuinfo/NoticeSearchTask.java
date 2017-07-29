@@ -2,11 +2,12 @@ package app.swuinfo.guru.com.swuinfo;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.stanfy.gsonxml.GsonXml;
 import com.stanfy.gsonxml.GsonXmlBuilder;
@@ -19,7 +20,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by xnote on 2017-07-29.
@@ -42,8 +42,6 @@ public class NoticeSearchTask extends AsyncTask<String, String, NoticeBean> {
     @Override
     protected void onPreExecute() {
         prd.setVisibility(View.VISIBLE);
-
-
     }
 
     @Override
@@ -90,11 +88,19 @@ public class NoticeSearchTask extends AsyncTask<String, String, NoticeBean> {
         }
 
         prd.setVisibility(View.INVISIBLE);
-        if(arrayList != null) {
+        if(arrayList.size() != 0) {
             final NoticeListAdapter adapter = new NoticeListAdapter(context, arrayList);
             listView.setAdapter(adapter);
         } else {
-            Toast.makeText(context, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+            final AlertDialog builder = new AlertDialog.Builder(context)
+                    .setMessage("검색결과가 없습니다").show();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable(){
+                public void run(){
+                    builder.dismiss();
+                }
+            }, 1500);
         }
     }
 
