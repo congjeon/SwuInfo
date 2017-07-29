@@ -1,15 +1,9 @@
 package app.swuinfo.guru.com.swuinfo;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -24,20 +18,25 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by xnote on 2017-07-28.
+ * Created by xnote on 2017-07-29.
  */
 
-public class NoticeTask extends AsyncTask<String, String, NoticeBean> {
+public class NoticeSearchTask extends AsyncTask<String, String, NoticeBean> {
     private Context context;
     private ListView listView;
     private ProgressBar prd;
+    private String searchKeyword;
+    private ArrayList<NoticeBean.Item> arrayList = new ArrayList<NoticeBean.Item>();
 
-    NoticeTask(Context context, ListView listView, ProgressBar prd) {
+    NoticeSearchTask(Context context, ListView listView, ProgressBar prd, String searchKeyword) {
         this.context = context;
         this.listView = listView;
         this.prd = prd;
+        this.searchKeyword = searchKeyword;
     }
 
     @Override
@@ -67,9 +66,6 @@ public class NoticeTask extends AsyncTask<String, String, NoticeBean> {
 
             String xmlData = output.toString();
             xmlData = xmlData.substring(39);
-            //xmlData = xmlData.replaceAll("\\<!\\[CDATA\\[", "");
-            //xmlData = xmlData.replaceAll("]]>", "");
-            //xmlData = "<Notice12><items><Subject>2017학년도 하계방학 교내인턴장학생 의무상담 시행 안내</Subject><Text>이건 파싱이 되나</Text><Dates>날짜</Dates></items><items><Subject>2017학년도 하계방학 교내인턴장학생 의무상담 시행 안내</Subject><Text>이건 파싱이 되나</Text><Dates>날짜</Dates></items></Notice12>";
 
             GsonXml gsonXml = new GsonXmlBuilder().setXmlParserCreator(parserCreator).setSameNameLists(true).create();
 
@@ -86,10 +82,19 @@ public class NoticeTask extends AsyncTask<String, String, NoticeBean> {
 
     @Override
     protected void onPostExecute(NoticeBean noticeBean) {
+        for(int i = 0; i < noticeBean.getItems().size(); i++) {
+            String data = noticeBean.getItems().get(i).getSubject();
+            if (data.contains(searchKeyword)) {
+                arrayList.add(noticeBean.getItems().get(i));
+            }
+        }
+
         prd.setVisibility(View.INVISIBLE);
-        if(noticeBean.getItems() != null) {
-            final NoticeListAdapter adapter = new NoticeListAdapter(context, noticeBean.getItems());
+        if(arrayList != null) {
+            final NoticeListAdapter adapter = new NoticeListAdapter(context, arrayList);
             listView.setAdapter(adapter);
+        } else {
+            Toast.makeText(context, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 

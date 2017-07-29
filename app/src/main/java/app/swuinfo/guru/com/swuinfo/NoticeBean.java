@@ -1,15 +1,18 @@
 package app.swuinfo.guru.com.swuinfo;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by xnote on 2017-07-28.
  */
 
-public class NoticeBean {
+public class NoticeBean implements Serializable{
     private List<Item> items;
 
-    class Item {
+    class Item implements Serializable{
         private String Subject;
         private String Text;
         private String Dates;

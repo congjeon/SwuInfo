@@ -96,7 +96,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_SCHEDULE:
-                actionBar.setElevation(12);
+                actionBar.setElevation(16);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule_click);
                 tabCall.setImageResource(R.drawable.tab_icon_call);
                 tabSite.setImageResource(R.drawable.tab_icon_site);
@@ -107,7 +107,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_SITE:
-                actionBar.setElevation(12);
+                actionBar.setElevation(16);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
                 tabCall.setImageResource(R.drawable.tab_icon_call);
                 tabSite.setImageResource(R.drawable.tab_icon_site_click);
@@ -118,7 +118,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_CALL:
-                actionBar.setElevation(12);
+                actionBar.setElevation(16);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
                 tabCall.setImageResource(R.drawable.tab_icon_call_click);
                 tabSite.setImageResource(R.drawable.tab_icon_site);
@@ -129,7 +129,7 @@ public class MenuActivity extends CommonActivity {
                 transaction.commit();
                 break;
             case FRAGMENT_SHUTTLE:
-                actionBar.setElevation(12);
+                actionBar.setElevation(16);
                 tabSchedule.setImageResource(R.drawable.tab_icon_schedule);
                 tabCall.setImageResource(R.drawable.tab_icon_call);
                 tabSite.setImageResource(R.drawable.tab_icon_site);
