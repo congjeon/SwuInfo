@@ -24,6 +24,7 @@ public class MainActivity extends CommonActivity  {
         findViewById(R.id.btnShuttle).setOnClickListener(clickButton);
     }
 
+    //메뉴 인텐트로 이동할때 첫 메뉴로 뭘 보여줄지 결정하기 위함
     private View.OnClickListener clickButton = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
