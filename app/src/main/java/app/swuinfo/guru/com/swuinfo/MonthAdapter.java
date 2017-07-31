@@ -28,6 +28,7 @@ public class MonthAdapter extends BaseAdapter {
     private int mCurYear;
     private int mCurMonth;
 
+
     /* 생성자 */
     public MonthAdapter(Context context) {
         super();
@@ -76,6 +77,7 @@ public class MonthAdapter extends BaseAdapter {
     public int getCurrentMonth() {
         return mCurMonth + 1;
     }
+
 
     /* 달력 데이터 다시 setting */
     public void recalculate() {

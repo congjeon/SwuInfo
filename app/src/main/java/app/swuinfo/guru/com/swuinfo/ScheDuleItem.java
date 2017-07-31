@@ -1,34 +1,19 @@
 package app.swuinfo.guru.com.swuinfo;
 
 /**
- * Created by seonmi on 2017-07-27.
+ * Created by samsung on 2017-07-28.
  */
 
-public class ScheDuleItem {
+public class ScheduleItem {
 
-    private String mDay;
-    private String mTitle;
+    // split로 분리된 data
+    private String devideData;
 
-    public String getmDay() {
-        return mDay;
+    public String getDevideData() {
+        return devideData;
     }
 
-    public void setmDay(String mDay) {
-        this.mDay = mDay;
+    public void setDevideData(String devideData) {
+        this.devideData = devideData;
     }
-
-    public String getmTitle() {
-        return mTitle;
-    }
-
-    public void setmTitle(String mTitle) {
-        this.mTitle = mTitle;
-    }
-
-    /* 생성자 */
-    public ScheDuleItem(String day,String title) {
-        this.mDay=day;
-        this.mTitle=title;
-    }
-
 }
