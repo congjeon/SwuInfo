@@ -21,7 +21,6 @@
         </activity>
         <activity android:name=".SplashActivity" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".CallActivity" />
         <activity android:name=".ReadNoticeActivity" />
         <activity android:name=".NoticeDetail"></activity>
     </application>
