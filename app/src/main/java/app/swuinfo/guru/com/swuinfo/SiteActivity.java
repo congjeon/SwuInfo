@@ -18,8 +18,6 @@ package app.swuinfo.guru.com.swuinfo;
 
 public class SiteActivity extends AppCompatActivity{
 
-    private Button btn_eclass, btn_swis, btn_major, btn_swuman, btn_paper, btn_etc;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
