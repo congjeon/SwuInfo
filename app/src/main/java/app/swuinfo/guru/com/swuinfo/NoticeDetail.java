@@ -24,7 +24,7 @@ public class NoticeDetail extends CommonActivity {
 
         NoticeBean.Item noticeData= (NoticeBean.Item)getIntent().getSerializableExtra("noticeData");
 
-        /*txtNotiContents.setMovementMethod(LinkMovementMethod.getInstance());*/
+
         txtNotiContents.setText("\n" + Html.fromHtml(noticeData.getText()));
         txtNotiTitle.setText(noticeData.getSubject());
     }
