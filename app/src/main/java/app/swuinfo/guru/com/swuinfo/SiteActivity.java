@@ -1,5 +1,6 @@
 package app.swuinfo.guru.com.swuinfo;
 
+        import android.Manifest;
         import android.app.AlertDialog;
         import android.content.DialogInterface;
         import android.content.Intent;
@@ -7,8 +8,13 @@ package app.swuinfo.guru.com.swuinfo;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.View;
+        import android.widget.AdapterView;
         import android.widget.ArrayAdapter;
         import android.widget.Button;
+        import android.widget.Spinner;
+        import android.widget.Toast;
+
+        import static android.content.Intent.ACTION_VIEW;
 
 public class SiteActivity extends AppCompatActivity{
 
@@ -19,14 +25,14 @@ public class SiteActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_eclass = (Button)findViewById(R.id.btn_eclass);
-        btn_swis = (Button)findViewById(R.id.btn_swis);
-        btn_major = (Button)findViewById(R.id.btn_major);
-        btn_swuman= (Button)findViewById(R.id.btn_swuman);
-        btn_paper= (Button)findViewById(R.id.btn_paper);
-        btn_etc= (Button)findViewById(R.id.btn_etc);
+        Button btnEclass = (Button)findViewById(R.id.btn_eclass);
+        Button btnSwis = (Button)findViewById(R.id.btn_swis);
+        Button btnMajor= (Button)findViewById(R.id.btn_major);
+        Button btnSwuman= (Button)findViewById(R.id.btn_swuman);
+        Button btnPaper= (Button)findViewById(R.id.btn_paper);
+        Button btnEtc= (Button)findViewById(R.id.btn_etc);
 
-        btn_eclass.setOnClickListener(new View.OnClickListener() {
+        btnEclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://cyber.swu.ac.kr"));
@@ -34,7 +40,7 @@ public class SiteActivity extends AppCompatActivity{
             }
         });
 
-        btn_swis.setOnClickListener(new View.OnClickListener() {
+        btnSwis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://swis.swu.ac.kr/"));
@@ -42,7 +48,7 @@ public class SiteActivity extends AppCompatActivity{
             }
         });
 
-        btn_major.setOnClickListener(new View.OnClickListener() {
+        btnMajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SiteActivity.this);
@@ -221,7 +227,7 @@ public class SiteActivity extends AppCompatActivity{
 
         });
 
-        btn_swuman.setOnClickListener(new View.OnClickListener() {
+        btnSwuman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://swuman.cafe24.com/xe/"));
@@ -229,7 +235,7 @@ public class SiteActivity extends AppCompatActivity{
             }
         });
 
-        btn_paper.setOnClickListener(new View.OnClickListener() {
+        btnPaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.add2paper.com/accounts/login/"));
@@ -237,7 +243,7 @@ public class SiteActivity extends AppCompatActivity{
             }
         });
 
-        btn_etc.setOnClickListener(new View.OnClickListener() {
+        btnEtc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SiteActivity.this);
