@@ -1,51 +1,36 @@
 package app.swuinfo.guru.com.swuinfo;
 
+        import android.Manifest;
+        import android.app.AlertDialog;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.net.Uri;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
+        import android.widget.Button;
+        import android.widget.Spinner;
+        import android.widget.Toast;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
+        import static android.content.Intent.ACTION_VIEW;
 
-import static app.swuinfo.guru.com.swuinfo.R.id.frag_eclass;
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class SiteFragment extends Fragment {
-
-    private Button btn_eclass, btn_swis, btn_major, btn_swuman, btn_paper, btn_etc;
-
-
-    public SiteFragment() {
-        // Required empty public constructor
-    }
-
+public class SiteActivity extends AppCompatActivity{
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        View view = inflater.inflate(R.layout.fragment_site, container, false);
+        Button btnEclass = (Button)findViewById(R.id.btn_eclass);
+        Button btnSwis = (Button)findViewById(R.id.btn_swis);
+        Button btnMajor= (Button)findViewById(R.id.btn_major);
+        Button btnSwuman= (Button)findViewById(R.id.btn_swuman);
+        Button btnPaper= (Button)findViewById(R.id.btn_paper);
+        Button btnEtc= (Button)findViewById(R.id.btn_etc);
 
-        btn_eclass = (Button) view.findViewById(frag_eclass);
-        btn_swis = (Button) view.findViewById(R.id.frag_swis);
-        btn_major = (Button) view.findViewById(R.id.frag_major);
-        btn_swuman = (Button) view.findViewById(R.id.frag_swuman);
-        btn_paper = (Button) view.findViewById(R.id.frag_paper);
-        btn_etc = (Button) view.findViewById(R.id.frag_etc);
-
-        btn_eclass.setOnClickListener(new View.OnClickListener() {
+        btnEclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://cyber.swu.ac.kr"));
@@ -53,7 +38,7 @@ public class SiteFragment extends Fragment {
             }
         });
 
-        btn_swis.setOnClickListener(new View.OnClickListener() {
+        btnSwis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://swis.swu.ac.kr/"));
@@ -61,14 +46,14 @@ public class SiteFragment extends Fragment {
             }
         });
 
-        btn_major.setOnClickListener(new View.OnClickListener() {
+        btnMajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-                alertBuilder.setTitle( Html.fromHtml("<font color='#a81b1b'>학과를 선택하세요.</font>"));
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SiteActivity.this);
+                alertBuilder.setTitle("학과를 선택하세요.");
 
                 // List Adapter 생성
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.select_dialog_singlechoice);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(SiteActivity.this, android.R.layout.select_dialog_singlechoice);
                 adapter.add("영어영문학과");
                 adapter.add("독어독문학과");
                 adapter.add("중어중문학과");
@@ -240,7 +225,7 @@ public class SiteFragment extends Fragment {
 
         });
 
-        btn_swuman.setOnClickListener(new View.OnClickListener() {
+        btnSwuman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://swuman.cafe24.com/xe/"));
@@ -248,7 +233,7 @@ public class SiteFragment extends Fragment {
             }
         });
 
-        btn_paper.setOnClickListener(new View.OnClickListener() {
+        btnPaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.add2paper.com/accounts/login/"));
@@ -256,14 +241,14 @@ public class SiteFragment extends Fragment {
             }
         });
 
-        btn_etc.setOnClickListener(new View.OnClickListener() {
+        btnEtc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-                alertBuilder.setTitle( Html.fromHtml("<font color='#a81b1b'>사이트를 선택하세요.</font>"));
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SiteActivity.this);
+                alertBuilder.setTitle("사이트를 선택하세요.");
 
                 // List Adapter 생성
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.select_dialog_singlechoice);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(SiteActivity.this, android.R.layout.select_dialog_singlechoice);
                 adapter.add("바롬인성교육원");
                 adapter.add("캣토익");
                 adapter.add("도서관");
@@ -315,8 +300,6 @@ public class SiteFragment extends Fragment {
             }
 
         });
-
-        return view;
 
 
     }
