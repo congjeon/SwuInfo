@@ -1,8 +1,11 @@
 package app.swuinfo.guru.com.swuinfo;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -21,6 +24,7 @@ public class NoticeDetail extends CommonActivity {
 
         NoticeBean.Item noticeData= (NoticeBean.Item)getIntent().getSerializableExtra("noticeData");
 
+        /*txtNotiContents.setMovementMethod(LinkMovementMethod.getInstance());*/
         txtNotiContents.setText("\n" + Html.fromHtml(noticeData.getText()));
         txtNotiTitle.setText(noticeData.getSubject());
     }

@@ -78,18 +78,4 @@ public class NoticeListAdapter extends BaseAdapter {
 
         return view;
     }
-
-    public void filter(String charText) {
-        dataList.clear();
-        if (charText.length() == 0) {
-            dataList.addAll(arraylist);
-        } else {
-            for (NoticeBean.Item nb : arraylist) {
-                if (nb.getSubject().contains(charText)) {
-                    dataList.add(nb);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
 }
