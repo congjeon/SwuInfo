@@ -2,6 +2,7 @@ package app.swuinfo.guru.com.swuinfo;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -41,7 +43,7 @@ public class ScheduleFragment extends Fragment {
     private ListView mDailyAmountView;
     private MonthAdapter mMonthAdapter;
     private ScheDuleAdapter mScheDuleAdapter;
-    private int year,month;
+    private int year,month,date;
 
     public int getYear() {
         return year;
@@ -65,7 +67,6 @@ public class ScheduleFragment extends Fragment {
         mMonthText = (TextView)view.findViewById(R.id.monthText);
         mMonthView = (GridView)view.findViewById(R.id.calendarView);
         mDailyAmountView = (ListView)view.findViewById(R.id.listView);
-
         mMonthAdapter = new MonthAdapter(getActivity());
 
         year=mMonthAdapter.getCurrentYear();

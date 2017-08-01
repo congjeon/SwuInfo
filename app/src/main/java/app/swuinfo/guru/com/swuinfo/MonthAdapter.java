@@ -27,12 +27,20 @@ public class MonthAdapter extends BaseAdapter {
     private int mLastDay;
     private int mCurYear;
     private int mCurMonth;
+    private ScheduleBean scheduleBean;
 
 
     /* 생성자 */
     public MonthAdapter(Context context) {
         super();
         this.mContext = context;
+        init();
+    }
+
+    public MonthAdapter(Context context, ScheduleBean scheduleBean) {
+        super();
+        this.mContext = context;
+        this.scheduleBean = scheduleBean;
         init();
     }
 
