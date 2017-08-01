@@ -14,7 +14,7 @@ import android.view.View;
 
 public class ShuttleFragment extends Fragment {
 
-    @Override
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(app.swuinfo.guru.com.swuinfo.R.layout.ShuttleFragment);
@@ -86,5 +86,5 @@ public class ShuttleFragment extends Fragment {
         public void onProviderDisabled(String provider) {
 
         }
-    }
+    }*/
 }

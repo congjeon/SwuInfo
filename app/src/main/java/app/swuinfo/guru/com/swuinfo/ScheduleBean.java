@@ -1,14 +1,16 @@
 package app.swuinfo.guru.com.swuinfo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScheduleBean {
+public class ScheduleBean implements Serializable {
 
 	private String result;
-	private ArrayList<ScheduleBeanSub> scheduleBean = new ArrayList<>();
+	private ScheduleBeanSub scheduleBeanSub;
+	private ArrayList<ScheduleBeanSub> scheduleBean;
 
-	class ScheduleBeanSub {
+	class ScheduleBeanSub implements Serializable{
 		private int year;
 		private int month;
 		private int day;
@@ -37,22 +39,30 @@ public class ScheduleBean {
 		}
 		public void setData(String data) {
 			this.data = data;
-		}
-	}
+        }
+    }
 
-	public String getResult() {
-		return result;
-	}
+    public String getResult() {
+        return result;
+    }
 
-	public void setResult(String result) {
-		this.result = result;
-	}
+    public void setResult(String result) {
+        this.result = result;
+    }
 
-	public ArrayList<ScheduleBeanSub> getScheduleBean() {
-		return scheduleBean;
-	}
+    public ScheduleBeanSub getScheduleBeanSub() {
+        return scheduleBeanSub;
+    }
 
-	public void setScheduleBean(ArrayList<ScheduleBeanSub> scheduleBean) {
-		this.scheduleBean = scheduleBean;
-	}
+    public void setScheduleBeanSub(ScheduleBeanSub scheduleBeanSub) {
+        this.scheduleBeanSub = scheduleBeanSub;
+    }
+
+    public ArrayList<ScheduleBeanSub> getScheduleBean() {
+        return scheduleBean;
+    }
+
+    public void setScheduleBean(ArrayList<ScheduleBeanSub> scheduleBean) {
+        this.scheduleBean = scheduleBean;
+    }
 }

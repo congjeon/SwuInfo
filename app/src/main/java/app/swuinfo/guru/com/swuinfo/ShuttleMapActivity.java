@@ -26,8 +26,8 @@ import java.util.ArrayList;
  * Created by pc on 2017-08-01.
  */
 
-public class ShuttleMapActivity extends Fragment implements OnMapReadyCallback{
-    private GoogleMap mGoogleMap;
+public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback*/{
+    /*private GoogleMap mGoogleMap;
     private static boolean mIsFirstMap = false;//한번만 주고 이동시키지 않겠다.
     //근접경보 intent 키 정의
     public static final String PROXI_INTENT_KEY = "proximity";
@@ -179,5 +179,5 @@ public class ShuttleMapActivity extends Fragment implements OnMapReadyCallback{
         }
         lm.addProximityAlert(lat, lng, radius, expiration, pi);
         mPendingIntentList.add(pi);
-    }
+    }*/
 }
