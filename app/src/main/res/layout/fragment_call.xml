@@ -48,21 +48,21 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="e-class,종정시 안될 때" />
 
             <Button
                 android:id="@+id/fragBtn2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="냉/난방문의" />
 
             <Button
                 android:id="@+id/fragBtn3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="강의실사용문의" />
         </LinearLayout>
 
         <LinearLayout
