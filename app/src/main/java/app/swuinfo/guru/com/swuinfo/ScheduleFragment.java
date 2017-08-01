@@ -136,14 +136,13 @@ public class ScheduleFragment extends Fragment {
 
                 return restTemplate.postForObject(URL_SCHEDULE,request,String.class);
             } catch (Exception e) {
-
+                return null;
+            } finally {
             }
-            return null;
         }
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
             Gson gson = new Gson();
             try {
                 ScheduleBean bean = gson.fromJson(s, ScheduleBean.class);
@@ -151,7 +150,7 @@ public class ScheduleFragment extends Fragment {
                     //데이터가 있다
                     if(bean.getResult().equals("ok")) {
                         if(bean != null) {
-                            ScheDuleAdapter adapter = new ScheDuleAdapter(getActivity());
+                            ScheDuleAdapter adapter = new ScheDuleAdapter(getActivity(), bean.getScheduleBean());
                             listView.setAdapter(adapter);
                         }
                     } else {

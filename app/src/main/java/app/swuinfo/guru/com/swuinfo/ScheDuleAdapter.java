@@ -28,12 +28,12 @@ import java.util.List;
 public class ScheDuleAdapter extends BaseAdapter {
 
     private Context mContext;
-    private ScheduleBean mScheduleBean=new ScheduleBean();
+    private ScheduleBean mScheduleBean = new ScheduleBean();
     private ArrayList<ScheduleBean.ScheduleBeanSub> mScheduleItemList=new ArrayList<>();
-    private ScheduleFragment scheduleFragment=new ScheduleFragment();
 
-    public ScheDuleAdapter(Context context) {
+    public ScheDuleAdapter(Context context, ArrayList<ScheduleBean.ScheduleBeanSub> scheduleBeanSubsList) {
         this.mContext = context;
+        this.mScheduleItemList = scheduleBeanSubsList;
     }
 
     // DATA에서 자료 개수 만큼
