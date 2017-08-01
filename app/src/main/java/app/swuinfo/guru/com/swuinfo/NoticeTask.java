@@ -43,8 +43,6 @@ public class NoticeTask extends AsyncTask<String, String, NoticeBean> {
     @Override
     protected void onPreExecute() {
         prd.setVisibility(View.VISIBLE);
-
-
     }
 
     @Override

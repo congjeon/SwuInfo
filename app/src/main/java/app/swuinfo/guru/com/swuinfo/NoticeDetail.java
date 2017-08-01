@@ -1,7 +1,9 @@
 package app.swuinfo.guru.com.swuinfo;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -14,6 +16,7 @@ public class NoticeDetail extends CommonActivity {
 
     TextView txtNotiTitle, txtNotiContents;
 
+    @TargetApi(Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +27,8 @@ public class NoticeDetail extends CommonActivity {
 
         NoticeBean.Item noticeData= (NoticeBean.Item)getIntent().getSerializableExtra("noticeData");
 
-        /*txtNotiContents.setMovementMethod(LinkMovementMethod.getInstance());*/
-        txtNotiContents.setText("\n" + Html.fromHtml(noticeData.getText()));
+        //txtNotiContents.setText("\n" + Html.fromHtml(noticeData.getText()));
+        txtNotiContents.setText(Html.fromHtml(noticeData.getText(), Html.FROM_HTML_MODE_COMPACT));
         txtNotiTitle.setText(noticeData.getSubject());
     }
 }

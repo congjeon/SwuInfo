@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,10 +65,10 @@ public class SiteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-                alertBuilder.setTitle("학과를 선택하세요.");
+                alertBuilder.setTitle( Html.fromHtml("<font color='#a81b1b'>학과를 선택하세요.</font>"));
 
                 // List Adapter 생성
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_singlechoice);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.select_dialog_singlechoice);
                 adapter.add("영어영문학과");
                 adapter.add("독어독문학과");
                 adapter.add("중어중문학과");
@@ -259,10 +260,10 @@ public class SiteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-                alertBuilder.setTitle("사이트를 선택하세요.");
+                alertBuilder.setTitle( Html.fromHtml("<font color='#a81b1b'>사이트를 선택하세요.</font>"));
 
                 // List Adapter 생성
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_singlechoice);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.select_dialog_singlechoice);
                 adapter.add("바롬인성교육원");
                 adapter.add("캣토익");
                 adapter.add("도서관");

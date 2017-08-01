@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
@@ -12,42 +13,43 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by samsung on 2017-07-27.
+ * Created by seonmi 2017-07-27.
  */
 public class MonthAdapter extends BaseAdapter {
 
-    private Context context;
-    private DateItem[] items;
-    private Calendar calendar;
+    private Context mContext;
+    private DateItem[] mItems;
+    private Calendar mCalendar;
 
     private int countColumn = 7;
 
-    private int firstDay;
-    private int lastDay;
-    private int curYear;
-    private int curMonth;
+    private int mFirstDay;
+    private int mLastDay;
+    private int mCurYear;
+    private int mCurMonth;
+
 
     /* 생성자 */
     public MonthAdapter(Context context) {
         super();
-        this.context = context;
+        this.mContext = context;
         init();
     }
 
     public MonthAdapter(Context context, AttributeSet attrs) {
         super();
-        this.context = context;
+        this.mContext = context;
         init();
     }
 
     /* 초기화 */
     private void init()  {
-        items = new DateItem[7 * 6];
+        mItems = new DateItem[7 * 6];
 
         Date date = new Date();
         /* calendar에 현재 시간 설정 */
-        calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        mCalendar = Calendar.getInstance();
+        mCalendar.setTime(date);
 
         recalculate();
         resetDayNumbers();
@@ -55,7 +57,7 @@ public class MonthAdapter extends BaseAdapter {
 
     /* 이전 월로 설정 */
     public void setPriviousMonth() {
-        calendar.add(Calendar.MONTH, -1);
+        mCalendar.add(Calendar.MONTH, -1);
         recalculate();
         resetDayNumbers();
 
@@ -63,41 +65,42 @@ public class MonthAdapter extends BaseAdapter {
 
     /* 다음 월로 설정 */
     public void setNextMonth() {
-        calendar.add(Calendar.MONTH, 1);
+        mCalendar.add(Calendar.MONTH, 1);
         recalculate();
         resetDayNumbers();
     }
 
     public int getCurrentYear() {
-        return curYear;
+        return mCurYear;
     }
 
     public int getCurrentMonth() {
-        return curMonth + 1;
+        return mCurMonth + 1;
     }
+
 
     /* 달력 데이터 다시 setting */
     public void recalculate() {
         // 현재 월에 1일설정
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        mCalendar.set(Calendar.DAY_OF_MONTH, 1);
         // 해당되는 주의 몇번째 index인가
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        firstDay = getFistDay(dayOfWeek);
+        int dayOfWeek = mCalendar.get(Calendar.DAY_OF_WEEK);
+        mFirstDay = getFistDay(dayOfWeek);
 
-        curYear = calendar.get(Calendar.YEAR);
-        curMonth = calendar.get(Calendar.MONTH);
-        lastDay = getLastDay(curYear,curMonth);
+        mCurYear = mCalendar.get(Calendar.YEAR);
+        mCurMonth = mCalendar.get(Calendar.MONTH);
+        mLastDay = getLastDay(mCurYear,mCurMonth);
     }
 
     /* dateitem에 날짜 설정 */
     public void resetDayNumbers() {
         for (int i = 0; i < 42; i++) {
-            int dayNumber = (i + 1) - firstDay;
-            if (dayNumber < 1 || dayNumber > lastDay) {
+            int dayNumber = (i + 1) - mFirstDay;
+            if (dayNumber < 1 || dayNumber > mLastDay) {
                 dayNumber = 0;
             }
             // date를 설정
-            items[i] = new DateItem(dayNumber);
+            mItems[i] = new DateItem(dayNumber);
         }
     }
 
@@ -170,15 +173,15 @@ public class MonthAdapter extends BaseAdapter {
         int columnIndex = position % countColumn;
 
         if (convertView == null) {
-            view = new DateItemView(context.getApplicationContext());
+            view = new DateItemView(mContext.getApplicationContext());
         } else {
             view = (DateItemView) convertView;
         }
 
-        // create a params
+        /* 레이아웃 파라미터 width, height */
         GridView.LayoutParams params = new GridView.LayoutParams(
                 GridView.LayoutParams.MATCH_PARENT,
-                120);
+                180);
 
         /* 일요일에 빨간표시 */
         if (columnIndex == 0) {
@@ -189,7 +192,7 @@ public class MonthAdapter extends BaseAdapter {
 
         /* 화면에 설정 */
         view.setLayoutParams(params);
-        view.setDate(items[position]);
+        view.setDate(mItems[position]);
 
         return view;
     }
