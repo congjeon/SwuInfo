@@ -1,9 +1,11 @@
 package app.swuinfo.guru.com.swuinfo;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -26,8 +28,8 @@ import java.util.List;
 public class ScheDuleAdapter extends BaseAdapter {
 
     private Context mContext;
-    private ScheduleBean.ScheduleBeanSub mScheduleBean=new ScheduleBean.ScheduleBeanSub();
-    private List<ScheduleItem> mScheduleItemList=new ArrayList<>();
+    private ScheduleBean mScheduleBean=new ScheduleBean();
+    private ArrayList<ScheduleBean.ScheduleBeanSub> mScheduleItemList=new ArrayList<>();
     private ScheduleFragment scheduleFragment=new ScheduleFragment();
 
     public ScheDuleAdapter(Context context) {
@@ -53,17 +55,22 @@ public class ScheDuleAdapter extends BaseAdapter {
     // position몇번째 뷰
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ScheDuleItemView view=new ScheDuleItemView(mContext.getApplicationContext());
-        new ScheduleTask().execute();
+        //ScheDuleItemView view=new ScheDuleItemView(mContext.getApplicationContext());
+        //new ScheduleTask().execute();
         //데이터를 가져온다
-        final ScheduleItem item=mScheduleItemList.get(position);
-        view.setmTxtTitleList(item.getDevideData());
+        LayoutInflater lf = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = lf.inflate(R.layout.schedule_view, null);
+
+        final ScheduleBean.ScheduleBeanSub scheduleData = mScheduleItemList.get(position);
+        TextView txtTitleList = (TextView) convertView.findViewById(R.id.txtTitleList);
+
+        txtTitleList.setText(scheduleData.getData());
 
         return convertView;
     }
 
     /* Schedule을 가져오는 작업 */
-    class ScheduleTask extends android.os.AsyncTask<String,Void,String>{
+    /*class ScheduleTask extends android.os.AsyncTask<String,Void,String>{
 
         private String URL_SCHEDULE_LIST= "http://172.16.15.204:8080/rest/ScheduleProc.do";
         String year,month;
@@ -100,7 +107,7 @@ public class ScheDuleAdapter extends BaseAdapter {
             return null;
         }
 
-        /* 받아온 json정보를 파싱*/
+        *//* 받아온 json정보를 파싱*//*
         @Override
         protected void onPostExecute(String s) {
             Gson gson =new Gson();
@@ -116,13 +123,13 @@ public class ScheDuleAdapter extends BaseAdapter {
                     for (int i = 0; i < array.length; i++) {
                         mScheduleItemList.get(i).setDevideData(array[i]);
                     }
-                   /* ScheDuleAdapter.this.notifyDataSetInvalidated(); */
+                   *//* ScheDuleAdapter.this.notifyDataSetInvalidated(); *//*
                 }
             }catch(Exception e){
                 Toast.makeText(mContext, "파싱 실패", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
-    }; // end onPost
+    }; // end onPost*/
 
 }

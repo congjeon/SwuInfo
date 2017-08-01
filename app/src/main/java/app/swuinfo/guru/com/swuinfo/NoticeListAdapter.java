@@ -7,9 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,6 +39,7 @@ public class NoticeListAdapter extends BaseAdapter {
 
     public class ViewHolder {
         TextView txtNoticeTitle;
+        ImageView imgNotice;
     }
 
     @Override
@@ -58,6 +66,7 @@ public class NoticeListAdapter extends BaseAdapter {
             view = lf.inflate(R.layout.lay_notice_list, null);
 
             holder.txtNoticeTitle = (TextView) view.findViewById(R.id.txtNoticeTitle);
+            holder.imgNotice = (ImageView) view.findViewById(R.id.imgNotice);
 
             view.setTag(holder);
         } else {
@@ -66,6 +75,35 @@ public class NoticeListAdapter extends BaseAdapter {
         final NoticeBean.Item noticeData = dataList.get(i);
         holder.txtNoticeTitle.setText(noticeData.getSubject());
 
+        //엊그제 날짜 구하기
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(cal.DATE, -2);
+        String beforeYesterday = date.format(cal.getTime());
+
+        //어제 날짜 구하기
+        cal = Calendar.getInstance();
+        cal.add(cal.DATE, -1);
+        String yesterday = date.format(cal.getTime());
+
+        //오늘 날짜 구하기
+        Date currentTime = new Date ();
+        String mTime = date.format (currentTime);
+
+        String noticeDates = noticeData.getDates().substring(0, 10);
+
+        //최신 공지 표시
+        if(noticeDates.equals(mTime)) {
+            holder.imgNotice.setImageResource(R.drawable.special_notice);
+        } else if(noticeDates.equals(yesterday)) {
+            holder.imgNotice.setImageResource(R.drawable.special_notice);
+        } else if(noticeDates.equals(beforeYesterday)) {
+            holder.imgNotice.setImageResource(R.drawable.special_notice);
+        } else {
+            holder.imgNotice.setImageResource(R.drawable.common_notice);
+        }
+
+        //공지 상세 페이지로
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
