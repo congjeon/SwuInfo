@@ -278,33 +278,17 @@ public class CallListAdapter extends BaseAdapter {
             }
         });
 
-   /*     // 리스트 아이템을 터치 했을 때 이벤트 발생
+       // 리스트 아이템을 터치 했을 때 이벤트 발생
         convertView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // 터치 시 해당 아이템 이름 출력
-                Toast.makeText(context, "전화 거는 중 : " + m_List.get(pos), Toast.LENGTH_SHORT).show();
-                Intent i1 = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + m_List.get(pos)));
-                try {
-                    context.startActivity(i1);
-                } catch (Exception e ) {
-                    e.printStackTrace();
-                }
+                Toast.makeText(context, "전화를 거시려면 버튼을 눌러주세요", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
 
         return convertView;
-    }
-/*
-    // 외부에서 아이템 추가 요청 시 사용
-    public void add(String _msg) {
-        m_List.add(_msg);
-    }*/
-
-    // 외부에서 아이템 삭제 요청 시 사용
-    public void remove(int _position) {
-        m_List.remove(_position);
     }
 }
