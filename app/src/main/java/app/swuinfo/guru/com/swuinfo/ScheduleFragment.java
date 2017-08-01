@@ -85,6 +85,7 @@ public class ScheduleFragment extends Fragment {
                 mMonthAdapter.setPriviousMonth();
                 mMonthAdapter.notifyDataSetChanged();
                 mMonthText.setText(mMonthAdapter.getCurrentYear() + "년" + mMonthAdapter.getCurrentMonth() + "월");
+                new ScheduleListTask(mDailyAmountView).execute();
             }
         });
            /* monthNext버튼 클릭시 */
@@ -95,6 +96,7 @@ public class ScheduleFragment extends Fragment {
                 mMonthAdapter.setNextMonth();
                 mMonthAdapter.notifyDataSetChanged();
                 mMonthText.setText(mMonthAdapter.getCurrentYear() + "년" + mMonthAdapter.getCurrentMonth() + "월");
+                new ScheduleListTask(mDailyAmountView).execute();
             }
         });
 

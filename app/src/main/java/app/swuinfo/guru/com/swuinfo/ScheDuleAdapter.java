@@ -63,8 +63,10 @@ public class ScheDuleAdapter extends BaseAdapter {
 
         final ScheduleBean.ScheduleBeanSub scheduleData = mScheduleItemList.get(position);
         TextView txtTitleList = (TextView) convertView.findViewById(R.id.txtTitleList);
+        TextView txtScheduleDates  = (TextView) convertView.findViewById(R.id.txtScheduleDates);
 
         txtTitleList.setText(scheduleData.getData());
+        txtScheduleDates.setText(scheduleData.getMonth() + "월 "+ scheduleData.getDay() + "일" );
 
         return convertView;
     }
