@@ -12,6 +12,10 @@ public class CallBean implements Serializable {
     private String team;
     private String team_Tel;
 
+    public CallBean() {
+
+    }
+
     public CallBean(String team, String teamTell) {
         this.team = team;
         this.team_Tel = teamTell;

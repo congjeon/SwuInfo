@@ -1,3 +1,4 @@
+
 package app.swuinfo.guru.com.swuinfo;
 
 import android.Manifest;
@@ -22,11 +23,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import android.support.v4.app.Fragment;
+
 /**
  * Created by pc on 2017-08-01.
  */
 
-public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback*/{
+
+public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback*/ {
     /*private GoogleMap mGoogleMap;
     private static boolean mIsFirstMap = false;//한번만 주고 이동시키지 않겠다.
     //근접경보 intent 키 정의
@@ -181,3 +185,4 @@ public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback
         mPendingIntentList.add(pi);
     }*/
 }
+

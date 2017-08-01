@@ -1,12 +1,17 @@
 package app.swuinfo.guru.com.swuinfo;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.icu.util.VersionInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +19,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +33,9 @@ import java.util.List;
  */
 public class CallFragment extends Fragment {
 
-    private EditText editText;
-    private Button btn1, btn2, btn3;
-    private ListView listView;
-    private CallListAdapter adapter;
     private CallBean callBean;
+    private ProgressBar prd;
+    private ArrayList<CallBean> arrayList = new ArrayList<CallBean>();
 
 
     public CallFragment() {
@@ -45,14 +51,17 @@ public class CallFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view1 = inflater.inflate(R.layout.fragment_call, container, false);
+
+        ImageView imgSearch = (ImageView)view1.findViewById(R.id.imgSearch);
+        final TabLayout tabLayout = (TabLayout) view1.findViewById(R.id.tabBar);
+        final EditText searchKeyword = (EditText) view1.findViewById(R.id.edtSearchKeyword2);
+        prd = (ProgressBar) view1.findViewById(R.id.progressBar2);
 
 
-        View view = inflater.inflate(R.layout.fragment_call, container, false);
-
-
-        view.findViewById(R.id.fragBtn1).setOnClickListener(CallClick);
-        view.findViewById(R.id.fragBtn2).setOnClickListener(CallClick);
-        view.findViewById(R.id.fragBtn3).setOnClickListener(CallClick);
+        view1.findViewById(R.id.fragBtn1).setOnClickListener(CallClick);
+        view1.findViewById(R.id.fragBtn2).setOnClickListener(CallClick);
+        view1.findViewById(R.id.fragBtn3).setOnClickListener(CallClick);
 
         CallBean call1 = new CallBean("교과/강의실지원", "02-970-5020");
         CallBean call2 = new CallBean("수업/수강신청(전공)", "02-970-5022");
@@ -102,7 +111,7 @@ public class CallFragment extends Fragment {
 
         //ArrayList<String> m_List = new ArrayList<>();
 
-        ArrayList<CallBean> list = new ArrayList<CallBean>();
+        final ArrayList<CallBean> list = new ArrayList<CallBean>();
         list.add(call1);
         list.add(call2);
         list.add(call3);
@@ -130,14 +139,46 @@ public class CallFragment extends Fragment {
         list.add(call25);
 
 
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String keyword = searchKeyword.getText().toString();
+                for(int i = 0; i < list.size(); i++) {
+                    String data = list.get(i).getTeam();
+                    if (data.contains(keyword)) {
+                        arrayList.add(list.get(i));
+                        m_Adapter = new CallListAdapter(arrayList);
+                        m_ListView.setAdapter(m_Adapter);
+                    }
+                } if(arrayList.size() == 0) {
+                    final AlertDialog builder = new AlertDialog.Builder(getActivity())
+                            .setMessage("검색결과가 없습니다").show();
 
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable(){
+                        public void run(){
+                            builder.dismiss();
+                        }
+                    }, 1500);
+                }
+            }
+        });
+
+        view1.findViewById(R.id.searchCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                m_Adapter = new CallListAdapter(list);
+                m_ListView.setAdapter(m_Adapter);
+                searchKeyword.setText("");
+            }
+        });
 
 
         //어댑터 생성
         m_Adapter = new CallListAdapter(list);
 
         // Xml에서 추가한 ListView 연결
-        m_ListView = (ListView) view.findViewById(R.id.fragListView);
+        m_ListView = (ListView) view1.findViewById(R.id.fragListView);
 
         // ListView에 어댑터 연결
         m_ListView.setAdapter(m_Adapter);
@@ -168,7 +209,7 @@ public class CallFragment extends Fragment {
         */
 
 
-        return view;
+        return view1;
 
 
     } // end OnCreate
