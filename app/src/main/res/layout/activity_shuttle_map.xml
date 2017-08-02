@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context="app.swuinfo.guru.com.swuinfo.ShuttleMapActivity">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        class="com.google.android.gms.maps.SupportMapFragment"/>
+        android:layout_weight="1" />
+
 </LinearLayout>
