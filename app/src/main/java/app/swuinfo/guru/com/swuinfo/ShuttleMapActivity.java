@@ -179,5 +179,7 @@ public class ShuttleMapActivity extends CommonActivity implements OnMapReadyCall
         lm.addProximityAlert(lat, lng, radius, expiration, pi);
         mPendingIntentList.add(pi);
     }
+
+
 }
 

@@ -88,26 +88,9 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.5"
                         android:orientation="horizontal"
                         android:weightSum="1">
 
-                        <ImageButton
-                            android:id="@+id/imageButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center"
-                            android:layout_weight="0.5"
-                            android:elevation="0dp"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/locationbutton" />
-
-                        <Button
-                            android:id="@+id/btnLocationCheck"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5"
-                            android:text="내 위치" />
                     </LinearLayout>
 
                     <Button
