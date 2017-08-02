@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -22,9 +23,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.net.URI;
 import java.util.ArrayList;
 
 import android.support.v4.app.Fragment;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by pc on 2017-08-01.
@@ -179,5 +189,45 @@ public class ShuttleMapActivity extends CommonActivity implements OnMapReadyCall
         lm.addProximityAlert(lat, lng, radius, expiration, pi);
         mPendingIntentList.add(pi);
     }
+
+    //서버에서 gps정보 실시간 받아오기
+    class GpsDownloadTask extends AsyncTask<Void, Void, String>{
+        public static final String URI_GPS_DOWNLOAD="http://172.16.13.217:8080/rest/selectShuttleLocation.do";
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try{
+
+                RestTemplate restTemplate=new RestTemplate();
+                //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getMessageConverters().add(new FormHttpMessageConverter() );
+
+                MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.ALL.APPLICATION_FORM_URLENCODED);
+
+                HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
+
+                return restTemplate.postForObject(URI_GPS_DOWNLOAD, request, String.class);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+    };
+
 }
 
