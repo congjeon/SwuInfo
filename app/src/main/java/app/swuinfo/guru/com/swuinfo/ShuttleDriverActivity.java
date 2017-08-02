@@ -38,46 +38,47 @@ public class ShuttleDriverActivity extends CommonActivity {
         findViewById(R.id.btnShuttle1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLatitude = startLocationService().get(0).getLatitude();
-                mLongitude = startLocationService().get(0).getLongitude();
-                startLocationService().clear();
+                startLocationService();
+                GPSListener gpsListener = new GPSListener();
+                mLatitude = gpsListener.latitude;
+                mLongitude = gpsListener.longitude;
                 new ShuttleLocationTask("swu1", mLatitude, mLongitude).execute();
             }
         });
         findViewById(R.id.btnShuttle2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLatitude = startLocationService().get(0).getLatitude();
-                mLongitude = startLocationService().get(0).getLongitude();
-                startLocationService().clear();
-                new ShuttleLocationTask("swu2", mLatitude, mLongitude).execute();
+                GPSListener gpsListener = new GPSListener();
+                mLatitude = gpsListener.latitude;
+                mLongitude = gpsListener.longitude;
+                new ShuttleLocationTask("swu1", mLatitude, mLongitude).execute();
             }
         });
         findViewById(R.id.btnShuttle3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLatitude = startLocationService().get(0).getLatitude();
-                mLongitude = startLocationService().get(0).getLongitude();
-                startLocationService().clear();
-                new ShuttleLocationTask("swu3", mLatitude, mLongitude).execute();
+                GPSListener gpsListener = new GPSListener();
+                mLatitude = gpsListener.latitude;
+                mLongitude = gpsListener.longitude;
+                new ShuttleLocationTask("swu1", mLatitude, mLongitude).execute();
             }
         });
         findViewById(R.id.btnShuttle4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLatitude = startLocationService().get(0).getLatitude();
-                mLongitude = startLocationService().get(0).getLongitude();
-                startLocationService().clear();
-                new ShuttleLocationTask("swu4", mLatitude, mLongitude).execute();
+                GPSListener gpsListener = new GPSListener();
+                mLatitude = gpsListener.latitude;
+                mLongitude = gpsListener.longitude;
+                new ShuttleLocationTask("swu1", mLatitude, mLongitude).execute();
             }
         });
         findViewById(R.id.btnShuttle5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLatitude = startLocationService().get(0).getLatitude();
-                mLongitude = startLocationService().get(0).getLongitude();
-                startLocationService().clear();
-                new ShuttleLocationTask("swu5", mLatitude, mLongitude).execute();
+                GPSListener gpsListener = new GPSListener();
+                mLatitude = gpsListener.latitude;
+                mLongitude = gpsListener.longitude;
+                new ShuttleLocationTask("swu1", mLatitude, mLongitude).execute();
             }
         });
     }
@@ -144,10 +145,12 @@ public class ShuttleDriverActivity extends CommonActivity {
 
     //계속적으로 콜백처리
     private class GPSListener implements LocationListener {
+        double latitude; double longitude;
+
         @Override
         public void onLocationChanged(Location location) {
-            Double latitude = location.getLatitude();
-            Double longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
         }
 
         @Override
@@ -166,7 +169,7 @@ public class ShuttleDriverActivity extends CommonActivity {
         }
     }
 
-    private List<LocationInfo> startLocationService() {
+    private void startLocationService() {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         GPSListener gpsListener = new GPSListener();
         long minTime = 5000;//5초
@@ -177,7 +180,7 @@ public class ShuttleDriverActivity extends CommonActivity {
         try {
             //뽀인트! GPS를 이용한 위치 요청
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return null;
+                return;
             }
             lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, gpsListener);//5초에 한번씩 정보갱신
 
@@ -192,12 +195,9 @@ public class ShuttleDriverActivity extends CommonActivity {
             }
             LocationInfo location1 = new LocationInfo(lat, lon);
             list.add(location1);
-
-            return list;
         }catch (Exception e){
             e.printStackTrace();
         }
-        return null;
     }
 
     public class LocationInfo {
