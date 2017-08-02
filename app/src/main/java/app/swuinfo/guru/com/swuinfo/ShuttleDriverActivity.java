@@ -3,7 +3,7 @@ package app.swuinfo.guru.com.swuinfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ShuttleDriverActivity extends AppCompatActivity {
+public class ShuttleDriverActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

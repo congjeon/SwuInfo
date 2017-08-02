@@ -31,7 +31,7 @@ import android.support.v4.app.Fragment;
  */
 
 
-public class ShuttleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class ShuttleMapActivity extends CommonActivity implements OnMapReadyCallback {
     private GoogleMap mGoogleMap;
     private static boolean mIsFirstMap = false;//한번만 주고 이동시키지 않겠다.
     //근접경보 intent 키 정의
