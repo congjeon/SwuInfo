@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,7 +31,7 @@ import android.support.v4.app.Fragment;
  */
 
 
-public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback*/ {
+public class ShuttleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mGoogleMap;
     private static boolean mIsFirstMap = false;//한번만 주고 이동시키지 않겠다.
     //근접경보 intent 키 정의
@@ -41,7 +42,7 @@ public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(app.swuinfo.guru.com.swuinfo.R.layout.activity_map);
+        setContentView(R.layout.activity_shuttle_map);
         //권한이 있나 없나 체크해서, 권한 없으면 권한 요청
         String[] permissions = {
                 android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
