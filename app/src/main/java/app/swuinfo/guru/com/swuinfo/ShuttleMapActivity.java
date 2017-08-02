@@ -48,7 +48,7 @@ public class ShuttleMapActivity extends AppCompatActivity implements OnMapReadyC
                 android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
         ActivityCompat.requestPermissions(this, permissions, 1);
 
-        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView)).getMapAsync(this);
 
         startLocationService();
 
