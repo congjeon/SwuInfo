@@ -181,5 +181,3 @@ public class ShuttleMapActivity extends AppCompatActivity implements OnMapReadyC
     }
 }
 
-
-}
