@@ -31,7 +31,7 @@ import android.support.v4.app.Fragment;
 
 
 public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback*/ {
-    /*private GoogleMap mGoogleMap;
+    private GoogleMap mGoogleMap;
     private static boolean mIsFirstMap = false;//한번만 주고 이동시키지 않겠다.
     //근접경보 intent 키 정의
     public static final String PROXI_INTENT_KEY = "proximity";
@@ -65,13 +65,7 @@ public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
         googleMap.setMyLocationEnabled(true);
@@ -183,6 +177,8 @@ public class ShuttleMapActivity extends Fragment /*implements OnMapReadyCallback
         }
         lm.addProximityAlert(lat, lng, radius, expiration, pi);
         mPendingIntentList.add(pi);
-    }*/
+    }
 }
 
+
+}

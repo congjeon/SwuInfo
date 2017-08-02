@@ -1,90 +1,103 @@
 package app.swuinfo.guru.com.swuinfo;
 
-import android.Manifest;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link ShuttleFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link ShuttleFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class ShuttleFragment extends Fragment {
 
-   /* @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(app.swuinfo.guru.com.swuinfo.R.layout.ShuttleFragment);
-        String[] permissions = {
-                android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
-        ActivityCompat.requestPermissions(this, permissions, 1);
-        findViewById(R.id.tabShuttle).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLocationService();
-            }
-        });
-    }//end onCreate
-    private void startLocationService() {
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        GPSListener gpsListener = new GPSListener();
-        long minTime = 5000;//5초
-        float minDistance = 0;
 
-        try {
+    private OnFragmentInteractionListener mListener;
 
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                return;
-            }
-            //뽀인트! GPS를 이용한 위치 요청
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, gpsListener);//5초에 한번씩 정보갱신
-
-            //뽀인트2! 네트워크를 이용한 위치 요청
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,minTime, minDistance, gpsListener);
-            //마지막 사용했던 위치정보를 확인한다.
-            Location lastLocation=lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if(lastLocation!=null){
-                Double lat=lastLocation.getLatitude();
-                Double lon=lastLocation.getLongitude();
-                String msg="마지막 위치:"+lat+"."+lon;
-                ToastUtil.showToast(ShuttleFragment.this,msg);
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    public ShuttleFragment() {
+        // Required empty public constructor
     }
 
-    //GPS가 동작할 경우, GPS정보가 계속적으로 콜백 처리
-    private class GPSListener implements LocationListener {
-        @Override
-        public void onLocationChanged(Location location) {
-            Double latitude=location.getLatitude();
-            Double longitude=location.getLongitude();
-            String msg="Latitude(위도):"+latitude+"\nLontitude(경도):"+longitude;
-            Log.i("TEST",msg);
-            ToastUtil.showToast(ShuttleFragment.this,msg);
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ShuttleFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ShuttleFragment newInstance(String param1, String param2) {
+        ShuttleFragment fragment = new ShuttleFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
 
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view=inflater.inflate(R.layout.fragment_shuttle,container,false);
 
+        return view;
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
         }
+    }
 
-        @Override
-        public void onProviderEnabled(String provider) {
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
+    }
 
-        @Override
-        public void onProviderDisabled(String provider) {
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 
-        }
-    }*/
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
 }
