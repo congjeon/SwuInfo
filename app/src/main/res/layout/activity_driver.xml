@@ -17,97 +17,36 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btnShuttle1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"></LinearLayout>
+                android:layout_height="wrap_content"
+                android:text="1번 버스 출발합니다~"/>
 
-            <LinearLayout
+
+            <Button
+                android:id="@+id/btnShuttle2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:text="2번 버스 출발합니다~" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="6">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="ID"
-                        android:textSize="30sp" />
-
-                    <EditText
-                        android:id="@+id/edtUserId"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="6">
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="PW"
-                        android:textSize="24sp" />
-
-                    <EditText
-                        android:id="@+id/edtUserPw"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btnGO"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:text="GO!" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
+            <Button
+                android:id="@+id/btnShuttle3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"></LinearLayout>
+                android:layout_height="wrap_content"
+                android:text="3번 버스 출발합니다~" />
 
+            <Button
+                android:id="@+id/btnShuttle4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4번 버스 출발합니다~" />
+
+            <Button
+                android:id="@+id/btnShuttle5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5번 버스 출발합니다~" />
         </LinearLayout>
 
         <ProgressBar
