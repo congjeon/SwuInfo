@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -29,23 +30,22 @@ import java.util.List;
 public class ShuttleDriverActivity extends CommonActivity {
 
     double mLatitude, mLongitude;
+    ProgressBar prd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
 
+        prd = (ProgressBar)findViewById(R.id.progressBar222);
         findViewById(R.id.btnShuttle1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startLocationService();
-                GPSListener gpsListener = new GPSListener();
-                mLatitude = gpsListener.latitude;
-                mLongitude = gpsListener.longitude;
                 new ShuttleLocationTask("swu1", mLatitude, mLongitude).execute();
             }
         });
-        findViewById(R.id.btnShuttle2).setOnClickListener(new View.OnClickListener() {
+       /* findViewById(R.id.btnShuttle2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 GPSListener gpsListener = new GPSListener();
@@ -80,7 +80,7 @@ public class ShuttleDriverActivity extends CommonActivity {
                 mLongitude = gpsListener.longitude;
                 new ShuttleLocationTask("swu1", mLatitude, mLongitude).execute();
             }
-        });
+        });*/
     }
 
 
@@ -99,6 +99,13 @@ public class ShuttleDriverActivity extends CommonActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            prd.setVisibility(View.VISIBLE);
+            mLatitude = latitude;
+            mLongitude = longitude;
+        }
+
+        @Override
         protected String doInBackground(String... params) {
             try {
                 RestTemplate restTemplate = new RestTemplate();
@@ -107,8 +114,8 @@ public class ShuttleDriverActivity extends CommonActivity {
 
                 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
                 map.add("userId", shuttleNo);
-                map.add("latitude", latitude);
-                map.add("longitude", longitude);
+                map.add("latitude", mLatitude);
+                map.add("longitude", mLongitude);
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -124,33 +131,18 @@ public class ShuttleDriverActivity extends CommonActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            Gson gson = new Gson();
-            try {
-                ShuttleBean sbean = gson.fromJson(s, ShuttleBean.class);
-                if (sbean != null) {
-                    //데이터가 있다
-                    if (sbean.getResult().equals("ok")) {
-                        if (sbean != null) {
-                            Toast.makeText(ShuttleDriverActivity.this, "출발~", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                    }
-                }
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "파싱실패", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+            if(s != null) {
+                Toast.makeText(ShuttleDriverActivity.this, "출발~", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     //계속적으로 콜백처리
     private class GPSListener implements LocationListener {
-        double latitude; double longitude;
-
         @Override
         public void onLocationChanged(Location location) {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
+            mLatitude = location.getLatitude();
+            mLongitude = location.getLongitude();
         }
 
         @Override
@@ -174,8 +166,6 @@ public class ShuttleDriverActivity extends CommonActivity {
         GPSListener gpsListener = new GPSListener();
         long minTime = 5000;//5초
         float minDistance = 0;
-        List<LocationInfo> list = null;
-        double lat = 0, lon = 0;
 
         try {
             //뽀인트! GPS를 이용한 위치 요청
@@ -190,39 +180,11 @@ public class ShuttleDriverActivity extends CommonActivity {
 
             Location lastLocation=lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if(lastLocation!=null){
-                lat=lastLocation.getLatitude();
-                lon=lastLocation.getLongitude();
+                mLatitude=lastLocation.getLatitude();
+                mLongitude=lastLocation.getLongitude();
             }
-            LocationInfo location1 = new LocationInfo(lat, lon);
-            list.add(location1);
         }catch (Exception e){
             e.printStackTrace();
-        }
-    }
-
-    public class LocationInfo {
-        private double latitude;
-        private double longitude;
-
-        LocationInfo(double latitude, double longitude) {
-            this.latitude = latitude;
-            this.longitude = longitude;
-        }
-
-        public double getLatitude() {
-            return latitude;
-        }
-
-        public void setLatitude(double latitude) {
-            this.latitude = latitude;
-        }
-
-        public double getLongitude() {
-            return longitude;
-        }
-
-        public void setLongitude(double longitude) {
-            this.longitude = longitude;
         }
     }
 }
